@@ -1,0 +1,121 @@
+from tkinter import *
+from tkinter.ttk import *
+
+win = Tk()
+win.title('Student information')
+win.geometry('600x400')
+
+def submit():
+     first = e1.get()
+     last = e2.get()
+     dob = str(e3.get())
+     father = e4.get()
+     com = str(course.get())
+     gender = var_chk.get()
+     if gender == 1:
+          gender='Male'
+     else:
+          gender ='Female'
+     result = str('Full Name:'+first+last+'\n'+'DOB:'+dob+'\n'+'Father Name:'+father+'\n'+'Course:'+com+'\n'+'Gender:'+str(gender))
+     text.insert(0.0,result)
+def clear():
+     e1.delete(first=0,last=100000)
+     e2.delete(first=0,last=100000)
+     e3.delete(first=0,last=100000)
+     e4.delete(first=0,last=100000)
+     course.delete(first=0,last=100000)
+     text.delete(0.0,END)
+     var_chk.set(0)
+     
+     
+def cancel():
+     win.destroy()
+
+#labels
+first_name = Label(win,text='First Name')
+first_name.grid(row=0,column=0)
+last_name = Label(win,text='Last Name')
+last_name.grid(row=1,column=0)
+roll = Label(win,text='DOB')
+roll.grid(row=2,column=0)
+father_name = Label(win,text='Father Name')
+father_name.grid(row=3,column=0)
+select_course = Label(win,text='Select course')
+select_course.grid(row=4,column=0)
+gender = Label(win,text='Select gender')
+gender.grid(row=5,column=0)
+'''lang1 = Label(win,text='First Language')
+lang1.grid(row=6,column=0)
+lang2 = Label(win,text='Second Language')
+lang2.grid(row=7,column=0)'''
+
+#Combo box
+course = Combobox(win)
+course['values']= ('Bsc','Bca','Bcom','BA','Bpharm')
+course.current(None) 
+course.grid(row=4,column=1)
+
+#entry
+e1 = Entry(win)
+e1.grid(row=0,column=1)
+e2 = Entry(win)
+e2.grid(row=1,column=1)
+e3 = Entry(win)
+e3.grid(row=2,column=1)
+e4 = Entry(win)
+e4.grid(row=3,column=1)
+
+#Radio button
+var_chk = IntVar()
+radio1 = Radiobutton(win,text='Male',variable=var_chk,value=1)
+radio1.grid(row=5,column=1)
+radio2 = Radiobutton(win,text='Female',variable=var_chk,value=2)
+radio2.grid(row=5,column=2)
+
+
+"""#Check box
+
+state1 = IntVar()
+state1.set(0) 
+check = Checkbutton(win, text='Tamil', var=state1)
+check.grid(row=6,column=1)
+
+state2 = IntVar()
+state2.set(0) 
+check1 = Checkbutton(win, text='English', var=state2)
+check1.grid(row=6,column=2)
+
+state3 = IntVar()
+state3.set(0) 
+check2 = Checkbutton(win, text='Hindi', var=state3)
+check2.grid(row=6,column=3)
+
+state4 = BooleanVar()
+state4.set(False) 
+check3 = Checkbutton(win, text='Tamil', var=state4)
+check3.grid(row=7,column=1)
+
+state5 = BooleanVar()
+state5.set(False) 
+check4 = Checkbutton(win, text='English', var=state5)
+check4.grid(row=7,column=2)
+
+state6 = BooleanVar()
+state6.set(False) 
+check5 = Checkbutton(win, text='Hindi', var=state6)
+check5.grid(row=7,column=3)"""
+
+#text box
+text = Text(win,height=7,width=30)
+text.grid(row=8,column=1)
+
+#Buttons
+b1 = Button(win,text='Submit',command=submit)
+b1.grid(row=9,column=1)
+b2 = Button(win,text='Exit',command=cancel)
+b2.grid(row=9,column=2)
+b3 = Button(win,text='Clear',command=clear)
+b3.grid(row=9,column=3)
+
+win.mainloop()
+
